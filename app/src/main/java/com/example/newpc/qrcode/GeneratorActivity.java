@@ -17,6 +17,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class GeneratorActivity extends AppCompatActivity {
     EditText text;
+    EditText text1;
     Button gen_btn;
     ImageView image;
     String text2Qr;
@@ -25,12 +26,13 @@ public class GeneratorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generator);
         text = (EditText) findViewById(R.id.text);
+        text1 = (EditText) findViewById(R.id.text1);
         gen_btn = (Button) findViewById(R.id.gen_btn);
         image = (ImageView) findViewById(R.id.image);
         gen_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                text2Qr = text.getText().toString().trim();
+                text2Qr = text.getText().toString().trim() + text1.getText().toString().trim();
                 MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                 try{
                     BitMatrix bitMatrix = multiFormatWriter.encode(text2Qr, BarcodeFormat.QR_CODE,200,200);
